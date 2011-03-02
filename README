@@ -1,5 +1,11 @@
 Example of music player for a specific release using the 7Digital Ruby wrapper
 
+Using Haml for templates, Sinatra for routing
+
+RESTful
+
+Don't forget to add a 'credentials' (no extension) file in the base folder with consumer key and secret
+
 Dependencies:
 
 public\7digital
@@ -10,6 +16,7 @@ public\js
 	JPlayer 2.0.0 with Blue Monday skin. You can get it http://www.jplayer.org/
 		
 Using jquery 1.4 from Google CDN at http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js
+
 
 
 

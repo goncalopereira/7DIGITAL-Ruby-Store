@@ -1,0 +1,15 @@
+%html
+	%head
+		%title Search Results
+	%body
+		%h2= "Search For: #{@model.search_value}"
+		
+		%h3 Release Results
+		
+		- @model.releases.each do |release|
+			%p
+				%a(href="/#{@model.country}/#{release.id}") #{release.artist.name}  - #{release.title} 
+			
+
+		
+		
