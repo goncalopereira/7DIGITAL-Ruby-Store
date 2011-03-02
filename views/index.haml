@@ -3,7 +3,8 @@
 		%link{:type => "text/css", :href=>"skin/jplayer.blue.monday.css",:rel=>"stylesheet"}
 		%script{:type => "text/javascript",:src  => "http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"}
 		%script{:type => "text/javascript",:src  => "js/jquery.jplayer.min.js"}
-		
+		%script{:type => "text/javascript"}
+			var myPlayList = #{@track_list_js_string}
 		%script{:type => "text/javascript",:src  => "js/load.js"}
 	%body		
 		%div{:class=>"release-image"}
