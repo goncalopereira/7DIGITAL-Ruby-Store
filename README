@@ -5,9 +5,11 @@ Dependencies:
 public\7digital
 	copy of the Ruby wrapper for 7Digital. You can get latest by going to https://github.com/filip7d/7digital.git
 
-	http://johnny-ray.com/swaggplayer/
-
-public\Swagg-Player
-	copy of Swagg-Player. You can get latest by going to https://github.com/Johnny-Ray/Swagg-Player.git
+public\skin
+public\js
+	JPlayer 2.0.0 with Blue Monday skin. You can get it http://www.jplayer.org/
 		
-Using jquery 1.5 from Google CDN at https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js
+Using jquery 1.4 from Google CDN at http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js
+
+
+
