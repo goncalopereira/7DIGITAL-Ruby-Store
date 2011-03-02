@@ -57,8 +57,7 @@ def player_page artist_name, release_url, release_title, track_list, key_param,r
     track_list_js_string = track_list_js_string + "{name:\"#{track.artist.name}-#{track.title}\",mp3:\" #{data['url']}\"},"
   end
 
-	"var playItem = 0;
-	var releaseImageUrl = \"#{release_image_url}\";
+	"var releaseImageUrl = \"#{release_image_url}\";
 	var releaseName = \"#{artist_name} - #{release_title}\";
 	var releaseBuyLink = \"#{release_url}\";
 	var myPlayList = [#{track_list_js_string}];"
