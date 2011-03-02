@@ -13,26 +13,21 @@ end
 
 country = "GB"
 
-set :haml, {:attr_wrapper => '"'}
+def track_list_string track_list, key_param
+		track_list_js_string = ""  
+		track_list.each do |track|
+		url = "#{track.preview_url}#{key_param}&redirect=false"
+		url_parse = URI.parse(url)
+		print = Net::HTTP.get_response(url_parse)
 
-def player_page track_list, key_param
-  track_list_js_string = ""
-  
-  track_list.each do |track|
-    url = "#{track.preview_url}#{key_param}&redirect=false"
-    url_parse = URI.parse(url)
-    print = Net::HTTP.get_response(url_parse)
+		api_response = print.body
+		data = XmlSimple.xml_in(api_response)
 
-    api_response = print.body
-    data = XmlSimple.xml_in(api_response)
-
-    track_list_js_string = track_list_js_string + "{name:\"#{track.artist.name}-#{track.title}\",mp3:\" #{data['url']}\"},"
-  end
-
+		track_list_js_string = track_list_js_string + "{name:\"#{track.artist.name}-#{track.title}\",mp3:\" #{data['url']}\"},"
+	end
   
 	return "[" + track_list_js_string + "]"
 	
-	#	var myPlayList = [#{track_list_js_string}];"
 end
 
 get '/:id'  do |release_id|
@@ -57,7 +52,7 @@ get '/:id'  do |release_id|
   
 	key_param = "&oauth_consumer_key=" + key
 	
-	@track_list_js_string = player_page(release_tracks,key_param)	
+	@track_list_js_string = track_list_string(release_tracks,key_param)	
 	@release_id = release_id  
 	@release_image_url = release.image
 	@release_name = "#{release.artist.name} - #{release.title}"

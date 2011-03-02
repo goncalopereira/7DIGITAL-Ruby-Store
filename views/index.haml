@@ -4,16 +4,15 @@
 		%script{:type => "text/javascript",:src  => "http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"}
 		%script{:type => "text/javascript",:src  => "js/jquery.jplayer.min.js"}
 		%script{:type => "text/javascript"}
-			var myPlayList = #{@track_list_js_string}
+			var myPlayList = #{@track_list_js_string};
 		%script{:type => "text/javascript",:src  => "js/load.js"}
 	%body		
-		%div{:class=>"release-image"}
-			%img{:src=>@release_image_url}
 		%div{:class=>"release-name"}
 			%h1=@release_name
+		%div{:class=>"release-image"}
+			%img{:src=>@release_image_url}		
 		%div{:class=>"release-buy-link"}
 			%a{:href=>@release_buy_url} Buy at 7Digital
-		
 		%div{:id=>"jquery_jplayer"}
 		%div{:class=>"jp-playlist-player"}
 			%div{:class=>"jp-interface"}
