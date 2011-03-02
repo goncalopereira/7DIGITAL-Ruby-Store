@@ -6,6 +6,12 @@ RESTful
 
 Don't forget to add a 'credentials' (no extension) file in the base folder with consumer key and secret
 
+/COUNTRY (i.e. /GB)
+	to use release name search and get results
+
+/COUNTRY/RELEASE_ID (i.e. /GB/155408)
+	to get to preview player with release image
+
 Dependencies:
 
 public\7digital
