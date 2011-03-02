@@ -12,7 +12,8 @@ $(document).ready(function(){
 			displayPlayList();
 			playListInit(true); // Parameter is a boolean for autoplay.
 		},
-		oggSupport: true
+		oggSupport: false,
+		swfPath: '../js/'
 	})
 	.jPlayer("onProgressChange", function(loadPercent, playedPercentRelative, playedPercentAbsolute, playedTime, totalTime) {
 		jpPlayTime.text($.jPlayer.convertTime(playedTime));
