@@ -3,11 +3,12 @@ gem 'rack', '~> 1.1.0'
 require 'sinatra'
 require 'public/7digital/lib/sevendigital'
 require 'haml'
-load 'verysimplecache.rb'
-load 'js_strings.rb'
-load 'api_service.rb'
-load 'credentials.rb'
-load 'track.rb'
+load 'lib/verysimplecache.rb'
+load 'lib/js_strings.rb'
+load 'lib/api_service.rb'
+load 'lib/credentials.rb'
+load 'domain/track.rb'
+load 'models/release_model.rb'
 
 get '/:country/:id'  do |country,release_id|
 	
@@ -32,13 +33,9 @@ get '/:country/:id'  do |country,release_id|
 	api_service = APIService.new
 	
 	tracks = api_service.get_tracks(release_tracks,credentials.key)
-		
-	@track_list_js_string = js_string_helper.track_list_string(tracks)		
-	@release_id = release_id  
-	@release_image_url = release.image
-	@release_name = "#{release.artist.name} - #{release.title}"
-	@release_buy_url = release.url
 
+	@model = ReleaseModel.new(release.image,release.artist.name,release.title,release.url,tracks)
+	
 	haml :index
 end
   
