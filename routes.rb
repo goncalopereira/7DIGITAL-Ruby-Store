@@ -11,8 +11,6 @@ class VerySimpleCache < Hash
   def get(key) has_key?(key) ? fetch(key) : nil;  end
 end
 
-country = "GB"
-
 def track_list_string track_list, key_param
 		track_list_js_string = ""  
 		track_list.each do |track|
@@ -30,7 +28,7 @@ def track_list_string track_list, key_param
 	
 end
 
-get '/:id'  do |release_id|
+get '/:country/:id'  do |country,release_id|
 
 	file = File.new("credentials","r")	
 	key = file.gets.split.join("\n")
