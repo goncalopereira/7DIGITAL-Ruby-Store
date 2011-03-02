@@ -4,6 +4,7 @@ require 'sinatra'
 require 'public/7digital/lib/sevendigital'
 require 'net/http'
 require 'xmlsimple'
+require 'haml'
 
 class VerySimpleCache < Hash
   def set(key, value) store(key, value);  end
@@ -12,40 +13,9 @@ end
 
 country = "GB"
 
-get '/player' do
+set :haml, {:attr_wrapper => '"'}
 
-	puts File.exist?("credentials") 
-	file = File.new("credentials","r")
-	
-	key = file.gets.split.join("\n")
-	secret = file.gets.split.join("\n")
-		
-	@api_client = Sevendigital::Client.new(
-		:oauth_consumer_key => key,
-        :oauth_consumer_secret => secret,
-        :lazy_load? => true,
-        :country => country,
-        :cache => VerySimpleCache.new,
-        :verbose => "verbose"
-   )
-	
-	release_id = 0
-	if (params[:release_id] == nil)
-		return
-	else
-		release_id = params[:release_id]
-	end
-  	
-	options = {}
-	options[:imageSize] = 350
-	release = @api_client.release.get_details(release_id,options)
-	release_tracks = @api_client.release.get_tracks(release_id)
-  
-	key_param = "&oauth_consumer_key=" + key
-	player_page(release.artist.name,release.url,release.title,release_tracks,key_param,release.image)
-end
-
-def player_page artist_name, release_url, release_title, track_list, key_param,release_image_url
+def player_page track_list, key_param
   track_list_js_string = ""
   
   track_list.each do |track|
@@ -59,13 +29,42 @@ def player_page artist_name, release_url, release_title, track_list, key_param,r
     track_list_js_string = track_list_js_string + "{name:\"#{track.artist.name}-#{track.title}\",mp3:\" #{data['url']}\"},"
   end
 
-	"var releaseImageUrl = \"#{release_image_url}\";
-	var releaseName = \"#{artist_name} - #{release_title}\";
-	var releaseBuyLink = \"#{release_url}\";
-	var myPlayList = [#{track_list_js_string}];"
+  
+	return "[" + track_list_js_string + "]"
+	
+	#	var myPlayList = [#{track_list_js_string}];"
 end
 
- get '/:id' do |release_id|
-  File.read(File.join('public', 'index.html')).gsub("%RELEASE_ID%","#{release_id}")
+get '/:id'  do |release_id|
+
+	file = File.new("credentials","r")	
+	key = file.gets.split.join("\n")
+	secret = file.gets.split.join("\n")
+			
+	@api_client = Sevendigital::Client.new(
+		:oauth_consumer_key => key,
+        :oauth_consumer_secret => secret,
+        :lazy_load? => true,
+        :country => country,
+        :cache => VerySimpleCache.new,
+        :verbose => "verbose"
+   )
+	  	
+	options = {}
+	options[:imageSize] = 350
+	release = @api_client.release.get_details(release_id,options)
+	release_tracks = @api_client.release.get_tracks(release_id)
+  
+	key_param = "&oauth_consumer_key=" + key
+	
+	@track_list_js_string = player_page(release_tracks,key_param)	
+	@release_id = release_id  
+	@release_image_url = release.image
+	@release_name = "#{release.artist.name} - #{release.title}"
+	@release_buy_url = release.url
+
+	haml :index
 end
+  
+
 

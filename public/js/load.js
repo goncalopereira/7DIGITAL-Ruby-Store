@@ -1,27 +1,31 @@
-<html>
-<head>
-<link href="skin/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.jplayer.min.js"></script>
 
-<script type="text/javascript" src="/player?release_id=%RELEASE_ID%"></script>
-<script type="text/javascript">
-<!--
 $(document).ready(function(){
 
 	var playItem = 0;
+
+	var myPlayList = [
+		{name:"Tempered Song",mp3:"http://www.miaowmusic.com/audio/mp3/Miaow-01-Tempered-song.mp3",ogg:"http://www.miaowmusic.com/audio/ogg/Miaow-01-Tempered-song.ogg"},
+		{name:"Hidden",mp3:"http://www.miaowmusic.com/audio/mp3/Miaow-02-Hidden.mp3",ogg:"http://www.miaowmusic.com/audio/ogg/Miaow-02-Hidden.ogg"},
+		{name:"Lentement",mp3:"http://www.miaowmusic.com/audio/mp3/Miaow-03-Lentement.mp3",ogg:"http://www.miaowmusic.com/audio/ogg/Miaow-03-Lentement.ogg"},
+		{name:"Lismore",mp3:"http://www.miaowmusic.com/audio/mp3/Miaow-04-Lismore.mp3",ogg:"http://www.miaowmusic.com/audio/ogg/Miaow-04-Lismore.ogg"},
+		{name:"The Separation",mp3:"http://www.miaowmusic.com/audio/mp3/Miaow-05-The-separation.mp3",ogg:"http://www.miaowmusic.com/audio/ogg/Miaow-05-The-separation.ogg"},
+		{name:"Beside Me",mp3:"http://www.miaowmusic.com/audio/mp3/Miaow-06-Beside-me.mp3",ogg:"http://www.miaowmusic.com/audio/ogg/Miaow-06-Beside-me.ogg"},
+		{name:"Bubble",mp3:"http://www.miaowmusic.com/audio/mp3/Miaow-07-Bubble.mp3",ogg:"http://www.miaowmusic.com/audio/ogg/Miaow-07-Bubble.ogg"},
+		{name:"Stirring of a Fool",mp3:"http://www.miaowmusic.com/audio/mp3/Miaow-08-Stirring-of-a-fool.mp3",ogg:"http://www.miaowmusic.com/audio/ogg/Miaow-08-Stirring-of-a-fool.ogg"},
+		{name:"Partir",mp3:"http://www.miaowmusic.com/audio/mp3/Miaow-09-Partir.mp3",ogg:"http://www.miaowmusic.com/audio/ogg/Miaow-09-Partir.ogg"},
+		{name:"Thin Ice",mp3:"http://www.miaowmusic.com/audio/mp3/Miaow-10-Thin-ice.mp3",ogg:"http://www.miaowmusic.com/audio/ogg/Miaow-10-Thin-ice.ogg"}
+	];
 
 	// Local copy of jQuery selectors, for performance.
 	var jpPlayTime = $("#jplayer_play_time");
 	var jpTotalTime = $("#jplayer_total_time");
 
 	$("#jquery_jplayer").jPlayer({
-
 		ready: function() {
 			displayPlayList();
-			playListInit(true); // Parameter is a boolean for autoplay.			
+			playListInit(true); // Parameter is a boolean for autoplay.
 		},
-		oggSupport: false
+		oggSupport: true
 	})
 	.jPlayer("onProgressChange", function(loadPercent, playedPercentRelative, playedPercentAbsolute, playedTime, totalTime) {
 		jpPlayTime.text($.jPlayer.convertTime(playedTime));
@@ -92,48 +96,3 @@ $(document).ready(function(){
 		playListChange( index );
 	}
 });
--->
-</script>
-
-</head>
-<body>
-<script type="text/javascript">
-	document.write('<div class="release-image"><img src="' + releaseImageUrl + '"></div>');
-	document.write('<div class="release-name">' + releaseName + '</div>');
-	document.write('<div class="release-buy-link"><a href="' + releaseBuyLink + '">Buy At 7Digital</a></div>');
-				
-</script>
-
-<div id="jquery_jplayer"></div>
-<div class="jp-playlist-player">
-	<div class="jp-interface">
-		<ul class="jp-controls">
-			<li><a href="#" id="jplayer_play" class="jp-play" tabindex="1">play</a></li>
-			<li><a href="#" id="jplayer_pause" class="jp-pause" tabindex="1">pause</a></li>
-			<li><a href="#" id="jplayer_stop" class="jp-stop" tabindex="1">stop</a></li>
-			<li><a href="#" id="jplayer_volume_min" class="jp-volume-min" tabindex="1">min volume</a></li>
-			<li><a href="#" id="jplayer_volume_max" class="jp-volume-max" tabindex="1">max volume</a></li>
-			<li><a href="#" id="jplayer_previous" class="jp-previous" tabindex="1">previous</a></li>
-			<li><a href="#" id="jplayer_next" class="jp-next" tabindex="1">next</a></li>
-		</ul>
-		<div class="jp-progress">
-			<div id="jplayer_load_bar" class="jp-load-bar">
-				<div id="jplayer_play_bar" class="jp-play-bar"></div>
-			</div>
-		</div>
-		<div id="jplayer_volume_bar" class="jp-volume-bar">
-			<div id="jplayer_volume_bar_value" class="jp-volume-bar-value"></div>
-		</div>
-		<div id="jplayer_play_time" class="jp-play-time"></div>
-		<div id="jplayer_total_time" class="jp-total-time"></div>
-	</div>
-	<div id="jplayer_playlist" class="jp-playlist">
-		<ul>
-			<!-- The function displayPlayList() uses this unordered list -->
-			<li></li>
-		</ul>
-	</div>
-</div>
-
-</body>
-</html>
