@@ -1,16 +1,10 @@
-
-<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
-<html xmlns='http://www.w3.org/1999/xhtml' lang='en' xml:lang='en'>
+<html>
 <head>
-<!-- Website Design By: www.happyworm.com -->
-<title>Page copied from the 2nd Demo (jPlayer 1.2.0)</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<link href="jPlayer.Blue.Monday.2.0.0/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />
+<link href="skin/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-<script type="text/javascript" src="jQuery.jPlayer.2.0.0/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="js/jquery.jplayer.min.js"></script>
 
 <script type="text/javascript" src="/player?release_id=%RELEASE_ID%"></script>
-
 <script type="text/javascript">
 <!--
 $(document).ready(function(){
@@ -22,9 +16,10 @@ $(document).ready(function(){
 	var jpTotalTime = $("#jplayer_total_time");
 
 	$("#jquery_jplayer").jPlayer({
+
 		ready: function() {
 			displayPlayList();
-			playListInit(true); // Parameter is a boolean for autoplay.
+			playListInit(true); // Parameter is a boolean for autoplay.			
 		},
 		oggSupport: false
 	})

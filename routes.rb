@@ -10,6 +10,8 @@ class VerySimpleCache < Hash
   def get(key) has_key?(key) ? fetch(key) : nil;  end
 end
 
+country = "GB"
+
 get '/player' do
 
 	puts File.exist?("credentials") 
@@ -22,7 +24,7 @@ get '/player' do
 		:oauth_consumer_key => key,
         :oauth_consumer_secret => secret,
         :lazy_load? => true,
-        :country => "GB",
+        :country => country,
         :cache => VerySimpleCache.new,
         :verbose => "verbose"
    )
