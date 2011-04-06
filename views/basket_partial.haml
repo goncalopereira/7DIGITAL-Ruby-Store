@@ -1,1 +1,6 @@
-BASKET PARTIAL HERE
+- if (@basket != nil)
+  - @basket.basket_items.each do |item|
+    = item.artist_name + " " + item.item_name
+    %form{ :action => "/#{@model.country}/basket/remove", :method => "post"}
+      %input{:type => "hidden", :name => "item_id", :value => item.id, :class => "text"}
+      %input{:type => "submit", :value => "Remove from Basket", :class => "button"}

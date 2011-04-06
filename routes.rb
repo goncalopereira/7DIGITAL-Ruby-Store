@@ -29,10 +29,10 @@ def get_user_and_basket user, basket, api_client
 
   if basket == nil
     basket = api_client.basket.create()
+    session[:basket] = basket
   end
 
   @basket = basket
-
 end
 
 get '/:country' do |country|
@@ -69,6 +69,24 @@ post '/search/:country' do |country|
   @model.page_size = page_size
 
 	haml :search_results
+end
+
+post '/:country/basket/add' do |country|
+  credentials = Credentials.new
+  @api_client = get_api_client credentials, country
+
+  session[:basket] = @api_client.basket.add_item(session[:basket].id,params[:release_id])
+
+  redirect "/#{country}"
+end
+
+post '/:country/basket/remove' do |country|
+  credentials = Credentials.new
+  @api_client = get_api_client credentials, country
+
+  session[:basket] = @api_client.basket.remove_item(session[:basket].id,params[:item_id])
+
+  redirect "/#{country}"
 end
 
 post '/:country/login' do |country|
@@ -131,6 +149,7 @@ get '/:country/:id'  do |country,release_id|
 	@model.tracks = release_tracks
 	@model.artist_name = release.artist.name
 	@model.url = release.url
+  @model.release_id = release.id
   @model.country = country
 
 	haml :release

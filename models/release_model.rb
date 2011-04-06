@@ -2,7 +2,7 @@ load 'lib/js_strings.rb'
 
 class ReleaseModel	
 
-	attr_accessor :image_url,:release_name,:tracks,:artist_name,:url, :release_date, :label, :country
+	attr_accessor :image_url,:release_name,:tracks,:artist_name,:url, :release_date, :label, :country, :release_id
 
   def formatted_date
     @release_date.strftime("%d/%m/%Y")
@@ -12,5 +12,4 @@ class ReleaseModel
     js_string_helper = JSStrings.new
     js_string_helper.track_list_string(tracks)
   end
-	
 end
