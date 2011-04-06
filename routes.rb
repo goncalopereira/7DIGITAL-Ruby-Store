@@ -4,7 +4,6 @@ require 'sinatra'
 require 'haml'
 load 'lib/very_simple_cache.rb'
 load 'lib/js_strings.rb'
-load 'lib/api_service.rb'
 load 'lib/credentials.rb'
 load 'domain/track.rb'
 load 'models/release_model.rb'
@@ -41,6 +40,7 @@ post '/search/:country' do |country|
 	@model.country = country
 	@model.search_value = search_value
 	@model.releases = releases
+
 	haml :search_results
 end
 
@@ -53,11 +53,9 @@ get '/:country/:id'  do |country,release_id|
 	release = @api_client.release.get_details(release_id,options)
 	release_tracks = @api_client.release.get_tracks(release_id)
 
-	api_service = APIService.new
-	tracks = api_service.get_tracks(release_tracks,credentials.key)
-
-	@model = ReleaseModel.new(release.image,release.artist.name,release.title,release.url,tracks)
+	@model = ReleaseModel.new(release.image,release.artist.name,release.title,release.url,release_tracks)
+  @model.label = release.label
+  @model.release_date = release.release_date
 	
 	haml :release
 end
- 
