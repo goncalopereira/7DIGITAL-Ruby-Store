@@ -1,6 +1,0 @@
-<card id="9876">
-	<type>VISA</type>
-	<last4digits>2345</last4digits>
-	<cardHolderName>Mr. John Smith</cardHolderName>
-	<expiryDate>201109</expiryDate>
-</card>

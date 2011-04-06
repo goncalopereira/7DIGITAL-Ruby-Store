@@ -1,6 +1,5 @@
 require 'rubygems'
-require './public/7digital/lib/sevendigital'
-#gem 'rack', '~> 1.1.0'
+require 'sevendigital'
 require 'sinatra'
 require 'haml'
 load 'lib/verysimplecache.rb'
