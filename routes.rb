@@ -8,6 +8,9 @@ load 'lib/js_strings.rb'
 load 'lib/credentials.rb'
 load 'models/release_model.rb'
 load 'models/search_model.rb'
+load 'models/artist_model.rb'
+
+enable :sessions
 
 def get_api_client credentials, country
 		
@@ -21,7 +24,23 @@ def get_api_client credentials, country
    )	  	   
 end
 
+def get_user_and_basket user, basket, api_client
+  @user = user
+
+  if basket == nil
+    basket = api_client.basket.create()
+  end
+
+  @basket = basket
+
+end
+
 get '/:country' do |country|
+	credentials = Credentials.new
+	@api_client = get_api_client credentials, country
+
+  get_user_and_basket session[:user],session[:basket], @api_client
+
 	@model = SearchModel.new
 	@model.country = country
 	haml :index
@@ -34,7 +53,9 @@ post '/search/:country' do |country|
 
 	credentials = Credentials.new
 	@api_client = get_api_client credentials, country
-	
+
+  get_user_and_basket session[:user],session[:basket], @api_client
+
 	releases = @api_client.release.search(search_value, :page_size=>page_size)
   artists = @api_client.artist.search(search_value, :page_size=>page_size)
   tracks = @api_client.track.search(search_value, :page_size=>page_size)
@@ -50,13 +71,52 @@ post '/search/:country' do |country|
 	haml :search_results
 end
 
+post '/:country/login' do |country|
+  email = params[:email]
+  password = params[:password]
+
+	credentials = Credentials.new
+	@api_client = get_api_client credentials, country
+
+  session[:user] = @api_client.user.authenticate(email,password)
+
+  redirect "/#{country}"
+end
+
+post '/:country/logout' do |country|
+  session[:user] = nil
+  redirect "/#{country}"
+end
+
 get '/:country/artist/:id' do |country,artist_id|
-  "#{country}, #{artist_id}, artist page not implemented yet..."
+
+  credentials = Credentials.new
+  @api_client = get_api_client credentials, country
+
+  get_user_and_basket session[:user],session[:basket], @api_client
+
+  options = {}
+  options[:imageSize] = 350
+
+  artist = @api_client.artist.get_details(artist_id,options)
+  artist_releases = @api_client.artist.get_releases(artist_id, options={})
+
+  @model = ArtistModel.new
+  @model.image_url = artist.image
+  @model.url = artist.url
+  @model.artist_name = artist.name
+  @model.releases = artist_releases
+  @model.country = country
+
+  haml :artist
 end
 
 get '/:country/:id'  do |country,release_id|
 	credentials = Credentials.new
 	@api_client = get_api_client credentials, country
+
+  get_user_and_basket session[:user],session[:basket], @api_client
+
 	options = {}
 	options[:imageSize] = 350
 	
@@ -71,6 +131,7 @@ get '/:country/:id'  do |country,release_id|
 	@model.tracks = release_tracks
 	@model.artist_name = release.artist.name
 	@model.url = release.url
+  @model.country = country
 
 	haml :release
 end

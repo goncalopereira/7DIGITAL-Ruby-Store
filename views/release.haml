@@ -2,5 +2,7 @@
 	%head
 		%title= @model.artist_name + "-" + @model.release_name
 	%body
+		= partial("login_partial")
+		= partial("basket_partial")
 		= partial("release_partial")
 		= partial("release_player_partial")

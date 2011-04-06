@@ -1,0 +1,11 @@
+- if @user == nil then
+  %form{ :action => "/#{@model.country}/login", :method => "post"}
+    %label{:for => "search_value"} Login:
+    %input{:type => "text", :name => "email", :class => "text"}
+    %input{:type => "password", :name => "password", :class => "text"}
+    %input{:type => "submit", :value => "Login", :class => "button"}
+
+-else
+  %form{ :action => "/#{@model.country}/logout", :method => "post"}
+    %input{:type => "submit", :value => "Logout", :class => "button"}
+

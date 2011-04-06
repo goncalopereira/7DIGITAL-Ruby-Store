@@ -1,0 +1,11 @@
+%html
+	%head
+		%title= @model.artist_name
+	%body
+		= partial("login_partial")
+		= partial("basket_partial")
+		= partial("artist_partial")
+		%h2 Releases
+		- @model.releases.each do |release|
+			%p
+				%a(href="/#{@model.country}/#{release.id}") #{release.artist.name} - #{release.title}

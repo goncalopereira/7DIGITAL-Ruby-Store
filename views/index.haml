@@ -2,6 +2,8 @@
 	%head
 		%title 7Digital
 	%body
+		= partial("login_partial")
+		= partial("basket_partial")
 		%form{ :action => "/search/#{@model.country}", :method => "post"}
 			%fieldset
 				%label{:for => "search_value"} Search:

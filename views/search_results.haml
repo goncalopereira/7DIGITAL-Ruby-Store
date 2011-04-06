@@ -2,6 +2,9 @@
 	%head
 		%title Search Results
 	%body
+		= partial("login_partial")
+		= partial("basket_partial")
+
 		%h2= "Search For: #{@model.search_value} (Maximum of #{@model.page_size} results)"
 		
 		%h3 Release Results
