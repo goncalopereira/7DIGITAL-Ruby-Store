@@ -1,12 +1,6 @@
 %html
 	%head
 		%title= @model.artist_name + "-" + @model.release_name
-		%link{:type => "text/css", :href=>"../skin/jplayer.blue.monday.css",:rel=>"stylesheet"}
-		%script{:type => "text/javascript",:src  => "http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"}
-		%script{:type => "text/javascript",:src  => "../js/jquery.jplayer.min.js"}
-		%script{:type => "text/javascript"}
-			var myPlayList = #{@model.js_array_tracks};
-		%script{:type => "text/javascript",:src  => "../js/load.js"}
 	%body
 		= partial("release_partial")
 		= partial("release_player_partial")

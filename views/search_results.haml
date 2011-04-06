@@ -9,6 +9,7 @@
 		- @model.releases.each do |release|
 			%p
 				%a(href="/#{@model.country}/#{release.id}") #{release.artist.name} - #{release.title}
+
 		%h3 Artist Results
 
 		- @model.artists.each do |artist|
