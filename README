@@ -15,7 +15,7 @@ Don't forget to add a 'credentials' (no extension) file in the base folder with 
 Dependencies:
 
 public\7digital
-	copy of the Ruby wrapper for 7Digital. You can get latest by going to https://github.com/filip7d/7digital.git
+	copy of the Ruby wrapper for 7Digital. You can get latest by going to https://github.com/filip7d/7digital
 
 public\skin
 public\js

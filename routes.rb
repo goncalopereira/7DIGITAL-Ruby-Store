@@ -1,7 +1,7 @@
 require 'rubygems'
-gem 'rack', '~> 1.1.0'
+require './public/7digital/lib/sevendigital'
+#gem 'rack', '~> 1.1.0'
 require 'sinatra'
-require 'public/7digital/lib/sevendigital'
 require 'haml'
 load 'lib/verysimplecache.rb'
 load 'lib/js_strings.rb'
@@ -53,7 +53,7 @@ get '/:country/:id'  do |country,release_id|
 	
 	release = @api_client.release.get_details(release_id,options)
 	release_tracks = @api_client.release.get_tracks(release_id)
-		
+
 	api_service = APIService.new
 	tracks = api_service.get_tracks(release_tracks,credentials.key)
 
