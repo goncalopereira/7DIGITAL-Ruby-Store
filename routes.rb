@@ -54,8 +54,8 @@ get '/:country/:id'  do |country,release_id|
 	release_tracks = @api_client.release.get_tracks(release_id)
 
 	@model = ReleaseModel.new(release.image,release.artist.name,release.title,release.url,release_tracks)
-  @model.label = release.label
-  @model.release_date = release.release_date
-	
+  @model.label = release.label.name
+  @model.release_date = release.release_date.strftime("%d/%m/%Y")
+
 	haml :release
 end
