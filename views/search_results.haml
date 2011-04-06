@@ -2,13 +2,24 @@
 	%head
 		%title Search Results
 	%body
-		%h2= "Search For: #{@model.search_value}"
+		%h2= "Search For: #{@model.search_value} (Maximum of #{@model.page_size} results)"
 		
 		%h3 Release Results
 		
 		- @model.releases.each do |release|
 			%p
-				%a(href="/#{@model.country}/#{release.id}") #{release.artist.name}  - #{release.title} 
+				%a(href="/#{@model.country}/#{release.id}") #{release.artist.name} - #{release.title}
+		%h3 Artist Results
+
+		- @model.artists.each do |artist|
+			%p
+				%a(href="/#{@model.country}/artist/#{artist.id}") #{artist.name}
+
+		%h3 Track Results
+
+		- @model.tracks.each do |track|
+			%p
+				%a(href="/#{@model.country}/#{track.release.id}") #{track.artist.name} - #{track.title}
 			
 
 		
