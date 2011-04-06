@@ -10,7 +10,7 @@ load 'models/release_model.rb'
 load 'models/search_model.rb'
 load 'models/artist_model.rb'
 
-enable :sessions
+use Rack::Session::Pool
 
 def get_api_client credentials, country
 		
@@ -33,6 +33,9 @@ def get_user_and_basket user, basket, api_client
   end
 
   @basket = basket
+
+  puts @user
+  puts @basket
 end
 
 get '/:country' do |country|
