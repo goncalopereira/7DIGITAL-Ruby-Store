@@ -9,7 +9,7 @@
 		%script{:type => "text/javascript",:src  => "../js/load.js"}
 	%body		
 		%h2= @model.artist_name + " - " +  @model.release_name
-		%h3= @model.label + " - " + @model.release_date
+		%h3= @model.label + " - " + @model.formatted_date
 		%h3
 			%img{:src=>@model.image_url}		
 		%div{:class=>"release-buy-link"}
