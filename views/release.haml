@@ -7,42 +7,6 @@
 		%script{:type => "text/javascript"}
 			var myPlayList = #{@model.js_array_tracks};
 		%script{:type => "text/javascript",:src  => "../js/load.js"}
-	%body		
-		%h2= @model.artist_name + " - " +  @model.release_name
-		%h3= @model.label + " - " + @model.formatted_date
-		%h3
-			%img{:src=>@model.image_url}		
-		%div{:class=>"release-buy-link"}
-			%a{:href=>@model.url} Buy at 7Digital
-		%div{:id=>"jquery_jplayer"}
-		%div{:class=>"jp-playlist-player"}
-			%div{:class=>"jp-interface"}
-			
-				%ul{:class=>"jp-controls"}
-				
-					%li 
-						%a{:href=>"#",:id=>"jplayer_play",:class=>"jp-play",:tabindex=>"1"} play
-					%li	
-						%a{:href=>"#",:id=>"jplayer_pause",:class=>"jp-pause",:tabindex=>"1"} pause
-					%li	
-						%a{:href=>"#",:id=>"jplayer_stop",:class=>"jp-stop",:tabindex=>"1"} stop
-					%li	
-						%a{:href=>"#",:id=>"jplayer_volume_min",:class=>"jp-volume-min",:tabindex=>"1"} min volume
-					%li	
-						%a{:href=>"#",:id=>"jplayer_volume_max",:class=>"jp-volume-max",:tabindex=>"1"} max volume
-					%li	
-						%a{:href=>"#",:id=>"jplayer_previous",:class=>"jp-previous",:tabindex=>"1"} previous
-					%li	
-						%a{:href=>"#",:id=>"jplayer_next",:class=>"jp-next",:tabindex=>"1"} next						
-				%div{:class=>"jp-progress"}
-					%div{:id=>"jplayer_load_bar",:class=>"jp-load-bar"}
-						%div{:id=>"jplayer_play_bar",:class=>"jp-play-bar"}
-				%div{:class=>"jp-volume-bar",:id=>"jplayer_volume_bar"}
-					%div{:id=>"jplayer_volume_bar_value",:class=>"jp-volume-bar-value"}
-				%div{:class=>"jp-play-time",:id=>"jplayer_play_time"}
-				%div{:class=>"jp-total-time",:id=>"jplayer_total_time"}
-			%div{:class=>"jp-playlist",:id=>"jplayer_playlist"}
-				%ul
-					/The function displayPlayList() uses this unordered list
-					%li
-			
+	%body
+		= partial("release_partial")
+		= partial("release_player_partial")
