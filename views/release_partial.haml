@@ -3,7 +3,7 @@
 %img{:src=>@model.image_url}
 %div{:class=>"release-buy-link"}
   %a{:href=>@model.url} Buy at 7Digital
-%form{ :action => "/#{@model.country}/basket/add", :method => "post"}
+%form{ :action => "/basket/add", :method => "post"}
   %input{:type => "hidden", :name => "release_id", :value => @model.release_id, :class => "text"}
   %input{:type => "submit", :value => "Add to Basket", :class => "button"}
 

@@ -24,40 +24,52 @@ def get_api_client credentials, country
    )	  	   
 end
 
-def get_user_and_basket user, basket, api_client
-  @user = user
-
-  if basket == nil
-    basket = api_client.basket.create()
-    session[:basket] = basket
+def get_basket api_client
+  if session[:basket] == nil
+    session[:basket] =  api_client.basket.create()
   end
 
-  @basket = basket
+  session[:basket]
+end
 
-  puts @user
-  puts @basket
+def get_country
+  if session[:country] == nil
+    'GB'
+  else
+    session[:country]
+  end
 end
 
 get '/:country' do |country|
-	credentials = Credentials.new
+  session[:country] = country
+	redirect '/'
+end
+
+
+get '/' do
+  country = get_country
+
+  credentials = Credentials.new
 	@api_client = get_api_client credentials, country
 
-  get_user_and_basket session[:user],session[:basket], @api_client
+  @user = session[:user]
+  @basket = get_basket @api_client
 
 	@model = SearchModel.new
 	@model.country = country
 	haml :index
-end 
+end
 
-post '/search/:country' do |country|
-
+post '/search' do
+  country = get_country
 	search_value = params[:search_value]
 	page_size = params[:number_results]
 
 	credentials = Credentials.new
 	@api_client = get_api_client credentials, country
 
-  get_user_and_basket session[:user],session[:basket], @api_client
+  @user = session[:user]
+  @basket = get_basket @api_client
 
 	releases = @api_client.release.search(search_value, :page_size=>page_size)
   artists = @api_client.artist.search(search_value, :page_size=>page_size)
@@ -74,7 +86,8 @@ post '/search/:country' do |country|
 	haml :search_results
 end
 
-post '/:country/basket/add' do |country|
+post '/basket/add' do
+  country = get_country
   credentials = Credentials.new
   @api_client = get_api_client credentials, country
 
@@ -83,7 +96,8 @@ post '/:country/basket/add' do |country|
   redirect "/#{country}"
 end
 
-post '/:country/basket/remove' do |country|
+post '/basket/remove' do
+  country = get_country
   credentials = Credentials.new
   @api_client = get_api_client credentials, country
 
@@ -92,7 +106,8 @@ post '/:country/basket/remove' do |country|
   redirect "/#{country}"
 end
 
-post '/:country/login' do |country|
+post '/login' do
+  country = get_country
   email = params[:email]
   password = params[:password]
 
@@ -104,17 +119,18 @@ post '/:country/login' do |country|
   redirect "/#{country}"
 end
 
-post '/:country/logout' do |country|
+post '/logout' do
   session[:user] = nil
-  redirect "/#{country}"
+  redirect "/"
 end
 
-get '/:country/artist/:id' do |country,artist_id|
-
+get '/artist/:id' do |artist_id|
+  country = get_country
   credentials = Credentials.new
   @api_client = get_api_client credentials, country
 
-  get_user_and_basket session[:user],session[:basket], @api_client
+  @user = session[:user]
+  @basket = get_basket @api_client
 
   options = {}
   options[:imageSize] = 350
@@ -132,11 +148,13 @@ get '/:country/artist/:id' do |country,artist_id|
   haml :artist
 end
 
-get '/:country/:id'  do |country,release_id|
+get '/release/:id'  do |release_id|
+  country = get_country
 	credentials = Credentials.new
 	@api_client = get_api_client credentials, country
 
-  get_user_and_basket session[:user],session[:basket], @api_client
+  @user = session[:user]
+  @basket = get_basket @api_client
 
 	options = {}
 	options[:imageSize] = 350
@@ -156,37 +174,4 @@ get '/:country/:id'  do |country,release_id|
   @model.country = country
 
 	haml :release
-end
-
-get '/' do
-
-  haml :streaming
-end
-
-post '/' do
-
-  credentials = Credentials.new
-	@api_client = get_api_client credentials, 'GB'
-
-  @user = @api_client.user.authenticate( params[:email], params[:password])
-  @locker = @api_client.user.get_locker(@user.oauth_access_token)
-
-  @releaseId =  @locker.locker_releases[0].release.id
-  @formatId = params[:formatId]
-  @trackId = @locker.locker_releases[0].locker_tracks[0].track.id
-
-  @userStream = @api_client.user.get_stream_track_url(@releaseId, @trackId, @user.oauth_access_token, {:formatId => @formatId})
-
-  @trackStream = track_stream(@releaseId,@trackId, @user.oauth_access_token)
-
-  haml :streaming
-end
-
-def track_stream release_id, track_id, token
-      api_request = @api_client.create_api_request(:GET, "track/stream", {:releaseId => release_id, :trackId => track_id})
-        api_request.api_service = :media
-        api_request.require_signature
-        api_request.token = token
-        @api_client.operator.get_request_uri(api_request)
-
 end

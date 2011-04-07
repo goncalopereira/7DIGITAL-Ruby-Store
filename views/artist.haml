@@ -8,4 +8,4 @@
 		%h2 Releases
 		- @model.releases.each do |release|
 			%p
-				%a(href="/#{@model.country}/#{release.id}") #{release.artist.name} - #{release.title}
+				%a(href="/release/#{release.id}") #{release.artist.name} - #{release.title}
