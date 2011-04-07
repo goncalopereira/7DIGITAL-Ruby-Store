@@ -3,16 +3,11 @@
 %img{:src=>@model.image_url}
 %div{:class=>"release-buy-link"}
   %a{:href=>@model.url} Buy at 7Digital
-%form{ :action => "/basket/add", :method => "post"}
-  %input{:type => "hidden", :name => "release_id", :value => @model.release_id, :class => "text"}
-  %input{:type => "submit", :value => "Add to Basket", :class => "button"}
+  %a(href="/basket/add/#{@model.release_id}") Add
   %h3 Tracks
 - @model.tracks.each do |track|
   %p
     = track.artist.name
     -
     = track.title
-    %form{ :action => "/basket/add", :method => "post"}
-      %input{:type => "hidden", :name => "release_id", :value => @model.release_id, :class => "text"}
-      %input{:type => "hidden", :name => "track_id", :value => track.id, :class => "text"}
-      %input{:type => "submit", :value => "Add to Basket", :class => "button"}
+    %a(href="/basket/add/#{@model.release_id}/#{track.id}") Add
