@@ -4,10 +4,4 @@
 %div{:class=>"release-buy-link"}
   %a{:href=>@model.url} Buy at 7Digital
   %a(href="/basket/add/#{@model.release_id}") Add
-  %h3 Tracks
-- @model.tracks.each do |track|
-  %p
-    = track.artist.name
-    \-
-    = track.title
-    %a(href="/basket/add/#{@model.release_id}/#{track.id}") Add
+
