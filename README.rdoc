@@ -1,0 +1,28 @@
+Example of music player for a specific release using the 7Digital Ruby wrapper
+
+Using Haml for templates, Sinatra for routing
+
+RESTful
+
+Don't forget to add a 'credentials' (no extension) file in the base folder with consumer key and secret
+
+/COUNTRY (i.e. /GB)
+	to use release name search and get results
+
+/COUNTRY/RELEASE_ID (i.e. /GB/155408)
+	to get to preview player with release image
+
+Dependencies:
+
+7Digital Ruby Wrapper. You can get latest by going to https://github.com/filip7d/7digital
+It is now on rubygems so you can just use 'gem install 7digital' instead of pulling the source.
+
+public\skin
+public\js
+	JPlayer 2.0.0 with Blue Monday skin. You can get it http://www.jplayer.org/
+		
+Using jquery 1.4 from Google CDN at http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js
+
+
+
+
