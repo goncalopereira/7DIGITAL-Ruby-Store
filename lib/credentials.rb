@@ -15,7 +15,8 @@ class Credentials
 			@key = file.gets.split.join("\n")
 			@secret = file.gets.split.join("\n")
 		else
-			puts 'no credentials file'
+			throw  'no credentials file'
+			
 		end
 	end
 		

@@ -2,13 +2,9 @@ require 'rubygems'
 require 'sevendigital'
 require 'sinatra'
 require 'haml'
-load 'lib/partials.rb'
-load 'lib/very_simple_cache.rb'
-load 'lib/js_strings.rb'
-load 'lib/credentials.rb'
-load 'models/release_model.rb'
-load 'models/search_model.rb'
-load 'models/artist_model.rb'
+
+Dir["lib/*.rb"].each {|file| require file }
+Dir["models/*.rb"].each {|file| require file }
 
 use Rack::Session::Pool
 
