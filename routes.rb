@@ -50,7 +50,7 @@ get '/' do
   country = get_country
 
   credentials = Credentials.new
-	@api_client = get_api_client credentials, country
+	api_client = get_api_client credentials, country
 
   @user = session[:user]
   @basket = get_basket @api_client
@@ -66,14 +66,14 @@ post '/search' do
 	page_size = params[:number_results]
 
 	credentials = Credentials.new
-	@api_client = get_api_client credentials, country
+	api_client = get_api_client credentials, country
 
   @user = session[:user]
   @basket = get_basket @api_client
 
-	releases = @api_client.release.search(search_value, :page_size=>page_size)
-  artists = @api_client.artist.search(search_value, :page_size=>page_size)
-  tracks = @api_client.track.search(search_value, :page_size=>page_size)
+	releases = api_client.release.search(search_value, :page_size=>page_size)
+  artists = api_client.artist.search(search_value, :page_size=>page_size)
+  tracks = api_client.track.search(search_value, :page_size=>page_size)
 
 	@model = SearchModel.new
 	@model.country = country
@@ -89,9 +89,9 @@ end
 post '/basket/add' do
   country = get_country
   credentials = Credentials.new
-  @api_client = get_api_client credentials, country
+  api_client = get_api_client credentials, country
 
-  session[:basket] = @api_client.basket.add_item(session[:basket].id,params[:release_id])
+  session[:basket] = api_client.basket.add_item(session[:basket].id,params[:release_id])
 
   redirect "/#{country}"
 end
@@ -99,9 +99,9 @@ end
 post '/basket/remove' do
   country = get_country
   credentials = Credentials.new
-  @api_client = get_api_client credentials, country
+  api_client = get_api_client credentials, country
 
-  session[:basket] = @api_client.basket.remove_item(session[:basket].id,params[:item_id])
+  session[:basket] = api_client.basket.remove_item(session[:basket].id,params[:item_id])
 
   redirect "/#{country}"
 end
@@ -112,9 +112,9 @@ post '/login' do
   password = params[:password]
 
 	credentials = Credentials.new
-	@api_client = get_api_client credentials, country
+	api_client = get_api_client credentials, country
 
-  session[:user] = @api_client.user.authenticate(email,password)
+  session[:user] = api_client.user.authenticate(email,password)
 
   redirect "/#{country}"
 end
@@ -127,16 +127,16 @@ end
 get '/artist/:id' do |artist_id|
   country = get_country
   credentials = Credentials.new
-  @api_client = get_api_client credentials, country
+  api_client = get_api_client credentials, country
 
   @user = session[:user]
-  @basket = get_basket @api_client
+  @basket = get_basket api_client
 
   options = {}
   options[:imageSize] = 350
 
-  artist = @api_client.artist.get_details(artist_id,options)
-  artist_releases = @api_client.artist.get_releases(artist_id, options={})
+  artist = api_client.artist.get_details(artist_id,options)
+  artist_releases = api_client.artist.get_releases(artist_id, options={})
 
   @model = ArtistModel.new
   @model.image_url = artist.image
@@ -151,16 +151,16 @@ end
 get '/release/:id'  do |release_id|
   country = get_country
 	credentials = Credentials.new
-	@api_client = get_api_client credentials, country
+	api_client = get_api_client credentials, country
 
   @user = session[:user]
-  @basket = get_basket @api_client
+  @basket = get_basket api_client
 
 	options = {}
 	options[:imageSize] = 350
 	
-	release = @api_client.release.get_details(release_id,options)
-	release_tracks = @api_client.release.get_tracks(release_id)
+	release = api_client.release.get_details(release_id,options)
+	release_tracks = api_client.release.get_tracks(release_id)
 
 	@model = ReleaseModel.new
   @model.label = release.label.name
