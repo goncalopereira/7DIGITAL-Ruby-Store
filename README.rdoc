@@ -9,10 +9,10 @@ Don't forget to add a 'credentials' (no extension) file in the base folder with 
 	/COUNTRY (i.e. /GB)
 		to set country
 
-	/RELEASE_ID (i.e. /155408)
+	/release/RELEASE_ID (i.e. /release/155408)
 		to get to release page, preview player, release image..
 
-	/ARTIST/ARTIST_ID
+	/artist/ARTIST_ID
 		to get to artist page
 
 Dependencies:
