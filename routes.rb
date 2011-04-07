@@ -157,3 +157,36 @@ get '/:country/:id'  do |country,release_id|
 
 	haml :release
 end
+
+get '/' do
+
+  haml :streaming
+end
+
+post '/' do
+
+  credentials = Credentials.new
+	@api_client = get_api_client credentials, 'GB'
+
+  @user = @api_client.user.authenticate( params[:email], params[:password])
+  @locker = @api_client.user.get_locker(@user.oauth_access_token)
+
+  @releaseId =  @locker.locker_releases[0].release.id
+  @formatId = params[:formatId]
+  @trackId = @locker.locker_releases[0].locker_tracks[0].track.id
+
+  @userStream = @api_client.user.get_stream_track_url(@releaseId, @trackId, @user.oauth_access_token, {:formatId => @formatId})
+
+  @trackStream = track_stream(@releaseId,@trackId, @user.oauth_access_token)
+
+  haml :streaming
+end
+
+def track_stream release_id, track_id, token
+      api_request = @api_client.create_api_request(:GET, "track/stream", {:releaseId => release_id, :trackId => track_id})
+        api_request.api_service = :media
+        api_request.require_signature
+        api_request.token = token
+        @api_client.operator.get_request_uri(api_request)
+
+end
