@@ -167,6 +167,7 @@ get '/release/:id'  do |release_id|
 	@model.url = release.url
   @model.release_id = release.id
   @model.country = country
+  @model.price = release.price
 
 	haml :release
 end
