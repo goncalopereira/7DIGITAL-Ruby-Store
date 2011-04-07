@@ -71,7 +71,7 @@ post '/basket/add' do
   credentials = Credentials.new
   api_client = get_api_client credentials, country
 
-  session[:basket] = api_client.basket.add_item(session[:basket].id,params[:release_id])
+  session[:basket] = api_client.basket.add_item(session[:basket].id,params[:release_id], params[:track_id])
 
   redirect "/#{country}"
 end

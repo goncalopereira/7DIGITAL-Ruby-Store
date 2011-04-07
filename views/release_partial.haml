@@ -6,4 +6,13 @@
 %form{ :action => "/basket/add", :method => "post"}
   %input{:type => "hidden", :name => "release_id", :value => @model.release_id, :class => "text"}
   %input{:type => "submit", :value => "Add to Basket", :class => "button"}
-
+  %h3 Tracks
+- @model.tracks.each do |track|
+  %p
+    = track.artist.name
+    -
+    = track.title
+    %form{ :action => "/basket/add", :method => "post"}
+      %input{:type => "hidden", :name => "release_id", :value => @model.release_id, :class => "text"}
+      %input{:type => "hidden", :name => "track_id", :value => track.id, :class => "text"}
+      %input{:type => "submit", :value => "Add to Basket", :class => "button"}
