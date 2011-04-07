@@ -1,10 +1,7 @@
 - if @user == nil then
-  %form{ :action => "/login", :method => "post"}
-    %label{:for => "search_value"} Login:
-    %input{:type => "text", :name => "email", :class => "text"}
-    %input{:type => "password", :name => "password", :class => "text"}
-    %input{:type => "submit", :value => "Login", :class => "button"}
-
+  %p
+    %a(href="/login")
+      Login
 -else
   %form{ :action => "/logout", :method => "post"}
     %input{:type => "submit", :value => "Logout", :class => "button"}

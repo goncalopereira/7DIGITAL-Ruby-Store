@@ -4,8 +4,4 @@
 	%body
 		= partial("login_partial")
 		= partial("basket_partial")
-		%form{ :action => "/search", :method => "post"}
-			%label{:for => "search_value"} Search:
-			%input{:type => "text", :name => "search_value", :class => "text"}
-			%input{:type => "text", :name => "number_results", :value => '20', :class => "text"}
-			%input{:type => "submit", :value => "Search", :class => "button"}
+		= partial("search_partial")

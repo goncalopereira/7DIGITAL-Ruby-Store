@@ -26,7 +26,7 @@ end
 
 def get_basket api_client
   if session[:basket] == nil
-    session[:basket] =  api_client.basket.create()
+    session[:basket] = api_client.basket.create()
   end
 
   session[:basket]
@@ -38,26 +38,6 @@ def get_country
   else
     session[:country]
   end
-end
-
-get '/:country' do |country|
-  session[:country] = country
-	redirect '/'
-end
-
-
-get '/' do
-  country = get_country
-
-  credentials = Credentials.new
-	api_client = get_api_client credentials, country
-
-  @user = session[:user]
-  @basket = get_basket @api_client
-
-	@model = SearchModel.new
-	@model.country = country
-	haml :index
 end
 
 post '/search' do
@@ -104,6 +84,11 @@ post '/basket/remove' do
   session[:basket] = api_client.basket.remove_item(session[:basket].id,params[:item_id])
 
   redirect "/#{country}"
+end
+
+get '/login' do
+  puts 'login'
+  haml :login
 end
 
 post '/login' do
@@ -174,4 +159,24 @@ get '/release/:id'  do |release_id|
   @model.country = country
 
 	haml :release
+end
+
+get '/:country' do |country|
+  session[:country] = country
+	redirect '/'
+end
+
+
+get '/' do
+  country = get_country
+
+  credentials = Credentials.new
+	api_client = get_api_client credentials, country
+
+  @user = session[:user]
+  @basket = get_basket api_client
+
+	@model = SearchModel.new
+	@model.country = country
+	haml :index
 end
