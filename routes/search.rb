@@ -1,8 +1,3 @@
-get '/search' do
-	model = SearchModel.new
-	haml :index, :locals => {:model => model}
-end
-
 post '/search' do
 	search_value = params[:search_value]
 	page_size = params[:number_results]

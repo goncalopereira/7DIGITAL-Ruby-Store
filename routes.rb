@@ -16,5 +16,5 @@ get '/:country' do |country|
 end
 
 get '/' do
-  redirect '/search'
+  haml :index
 end
