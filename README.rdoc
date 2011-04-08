@@ -1,7 +1,9 @@
-Example of music player for a specific release using the 7Digital Ruby wrapper
+Example of a webfront using the 7Digital ruby wrapper
 
 Using Haml for templates
+
 Sinatra for routing
+
 Compass Blueprint for styles
 
 RESTful
@@ -17,16 +19,21 @@ Don't forget to add a 'credentials' (no extension) file in the base folder with 
 	/artist/ARTIST_ID
 		to get to artist page
 
+	/search
+		for search page
+
+	/locker
+		user's purchases if already logged in
+
 Dependencies:
 
-7Digital Ruby Wrapper. You can get latest by going to https://github.com/filip7d/7digital
-It is now on rubygems so you can just use 'gem install 7digital' instead of pulling the source.
+	7Digital Ruby Wrapper. You can get latest by going to https://github.com/filip7d/7digital
+		It is now on rubygems so you can just use 'gem install 7digital' instead of pulling the source.
 
 	public\skin
 	public\js
 		JPlayer 2.0.0 with Blue Monday skin. You can get it http://www.jplayer.org/
 		
-Using jquery 1.4 from Google CDN at http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js
 
 
 
