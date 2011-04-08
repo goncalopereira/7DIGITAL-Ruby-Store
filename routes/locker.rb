@@ -3,7 +3,8 @@ get '/locker' do
 		redirect '/locker/0/0'
 	else 
 		redirect '/'
-end
+	end
+end	
 
 get '/locker/:release_id/:track_id' do |release_id,track_id|
 
