@@ -16,7 +16,8 @@
 		
 			- locals[:model].releases.each do |release|
 				%p
-					%a(href="/release/#{release.id}") #{release.artist.name} - #{release.title}
+					%a(href="/release/#{release.id}") 
+						=haml(:'partials/release_small_partial',:layout=>false,:locals=>{:release=>release})
 
 			%h3 Artist Results
 

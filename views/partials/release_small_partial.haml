@@ -1,0 +1,9 @@
+%img{:src=>locals[:release].image}
+%p
+	= locals[:release].artist.name
+	\- 
+	=locals[:release].title
+	%a(href="/basket/add/#{locals[:release].id}") Add
+	\-
+	= locals[:release].price.formatted_price
+
