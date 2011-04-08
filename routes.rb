@@ -110,7 +110,7 @@ post '/login' do
   redirect "/#{country}"
 end
 
-post '/logout' do
+get '/logout' do
   session[:user] = nil
   redirect "/"
 end
