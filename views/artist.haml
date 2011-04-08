@@ -7,12 +7,13 @@
 		%link{:type => "text/css", :href=>"/stylesheets/ie.css",:rel=>"stylesheet"}
 
 	%body
-		= partial("login_partial")
-		= partial("basket_partial")
-		= partial("search_partial")
+		= haml(:'partials/login_partial',:layout=>false)
+		= haml(:'partials/basket_partial',:layout=>false)
+		= haml(:'partials/search_partial',:layout=>false)
 		%div{:class => 'container'}
-			= partial("artist_partial")
+			= haml(:'partials/artist_partial',:layout=>false)
 			%h2 Releases
 			- @model.releases.each do |release|
 				%p
 					%a(href="/release/#{release.id}") #{release.artist.name} - #{release.title}
+

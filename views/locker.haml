@@ -6,9 +6,9 @@
 		/[if IE]
 		%link{:type => "text/css", :href=>"/stylesheets/ie.css",:rel=>"stylesheet"}
 	%body
-		= partial("login_partial")
-		= partial("basket_partial")
-		= partial("search_partial")
+		= haml(:'partials/login_partial',:layout=>false)
+		= haml(:'partials/basket_partial',:layout=>false)
+		= haml(:'partials/search_partial',:layout=>false)
 
 		%audio{:src=>"#{@player_track_url}", :controls=>"controls", :type=>"audio/mp3"}
 

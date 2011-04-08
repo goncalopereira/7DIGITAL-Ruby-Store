@@ -6,10 +6,11 @@
 		/[if IE]
 		%link{:type => "text/css", :href=>"/stylesheets/ie.css",:rel=>"stylesheet"}
 	%body
-		= partial("login_partial")
-		= partial("basket_partial")
-		= partial("search_partial")
+		= haml(:'partials/login_partial',:layout=>false)
+		= haml(:'partials/basket_partial',:layout=>false)
+		= haml(:'partials/search_partial',:layout=>false)
+
 		%div{:class => 'container'}
-			= partial("release_partial")
-			= partial("release_tracks_partial")
-			= partial("release_player_partial")
+			= haml(:'partials/release_partial',:layout=>false)
+			= haml(:'partials/release_tracks_partial',:layout=>false)
+			= haml(:'partials/release_player_partial',:layout=>false)
