@@ -1,4 +1,4 @@
-%h2= @model.artist_name
-%img{:src=>@model.image_url}
+%h2= locals[:model].artist_name
+%img{:src=>locals[:model].image_url}
 %div{:class=>"release-buy-link"}
-  %a{:href=>@model.url} Buy at 7Digital
+  %a{:href=>locals[:model].url} Buy at 7Digital
