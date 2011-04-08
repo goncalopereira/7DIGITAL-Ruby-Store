@@ -1,5 +1,4 @@
 get '/login' do
-  puts 'login'
   haml :login
 end
 

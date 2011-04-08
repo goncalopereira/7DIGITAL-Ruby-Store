@@ -1,16 +1,16 @@
 %html
 	%head
-		%title= @model.artist_name + "-" + @model.release_name
+		%title= locals[:model].artist_name + "-" + locals[:model].release_name
 		%link{:type => "text/css", :href=>"/stylesheets/screen.css",:rel=>"stylesheet"}
 		%link{:type => "text/css", :href=>"/stylesheets/print.css",:rel=>"stylesheet"}
 		/[if IE]
 		%link{:type => "text/css", :href=>"/stylesheets/ie.css",:rel=>"stylesheet"}
 	%body
-		= haml(:'partials/login_partial',:layout=>false)
-		= haml(:'partials/basket_partial',:layout=>false)
-		= haml(:'partials/search_partial',:layout=>false)
+		= haml(:'partials/login_partial',:layout=>false, :locals=>{:model => locals[:model]})
+		= haml(:'partials/basket_partial',:layout=>false, :locals=>{:model => locals[:model]})
+		= haml(:'partials/search_partial',:layout=>false, :locals=>{:model => locals[:model]})
 
 		%div{:class => 'container'}
-			= haml(:'partials/release_partial',:layout=>false)
-			= haml(:'partials/release_tracks_partial',:layout=>false)
-			= haml(:'partials/release_player_partial',:layout=>false)
+			= haml(:'partials/release_partial',:layout=>false, :locals=>{:model => locals[:model]})
+			= haml(:'partials/release_tracks_partial',:layout=>false, :locals=>{:model=>locals[:model]})
+			= haml(:'partials/release_player_partial',:layout=>false, :locals=>{:model=>locals[:model]})

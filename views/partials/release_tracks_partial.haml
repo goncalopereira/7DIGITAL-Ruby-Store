@@ -1,7 +1,7 @@
 %h3 Tracks
-- @model.tracks.each do |track|
+- locals[:model].tracks.each do |track|
   %p
     = track.artist.name
     \-
     = track.title
-    %a(href="/basket/add/#{@model.release_id}/#{track.id}") Add
+    %a(href="/basket/add/#{locals[:model].release_id}/#{track.id}") Add
