@@ -1,5 +1,5 @@
 %div{:class => 'container'}
-  - if @user == nil then
+  - if @user.nil? then
     %a{:href =>'/login'}
       Login
   -else

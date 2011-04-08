@@ -22,7 +22,7 @@ def get_api_client credentials, country
 end
 
 def get_basket api_client
-  if session[:basket] == nil
+  if session[:basket].nil?
     session[:basket] = api_client.basket.create()
   end
 
@@ -30,7 +30,7 @@ def get_basket api_client
 end
 
 def get_country
-  if session[:country] == nil
+  if session[:country].nil?
     'GB'
   else
     session[:country]

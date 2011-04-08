@@ -10,7 +10,7 @@ get '/locker/:release_id/:track_id' do |release_id,track_id|
   @user = session[:user]
   @basket = get_basket api_client
 
-	if @user != nil
+	if !@user.nil?
    	
 		@locker = api_client.user.get_locker(@user.oauth_access_token)
     
