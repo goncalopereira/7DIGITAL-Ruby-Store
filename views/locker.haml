@@ -1,0 +1,24 @@
+%html
+	%head
+		%title Locker
+		%link{:type => "text/css", :href=>"/stylesheets/screen.css",:rel=>"stylesheet"}
+		%link{:type => "text/css", :href=>"/stylesheets/print.css",:rel=>"stylesheet"}
+		/[if IE]
+		%link{:type => "text/css", :href=>"/stylesheets/ie.css",:rel=>"stylesheet"}
+	%body
+		= partial("login_partial")
+		= partial("basket_partial")
+		= partial("search_partial")
+		%div{:class => 'container'}
+			%h2 Locker
+			- @locker.locker_releases.each do |locker_release|
+				%h4
+					=locker_release.release.artist.name
+					\-
+					=locker_release.release.title
+				%ul
+				- locker_release.locker_tracks.each do |locker_track|
+					%li
+						=locker_track.track.artist.name
+						\-
+						=locker_track.track.title
