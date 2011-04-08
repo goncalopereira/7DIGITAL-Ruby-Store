@@ -1,6 +1,10 @@
 %html
 	%head
 		%title 7Digital
+		%link{:type => "text/css", :href=>"/stylesheets/screen.css",:rel=>"stylesheet"}
+		%link{:type => "text/css", :href=>"/stylesheets/print.css",:rel=>"stylesheet"}
+		/[if IE]
+		%link{:type => "text/css", :href=>"/stylesheets/ie.css",:rel=>"stylesheet"}
 	%body
 		= partial("basket_partial")
 		= partial("search_partial")

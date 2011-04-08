@@ -1,6 +1,10 @@
 %html
 	%head
 		%title Search Results
+		%link{:type => "text/css", :href=>"/stylesheets/screen.css",:rel=>"stylesheet"}
+		%link{:type => "text/css", :href=>"/stylesheets/print.css",:rel=>"stylesheet"}
+		/[if IE]
+		%link{:type => "text/css", :href=>"/stylesheets/ie.css",:rel=>"stylesheet"}
 	%body
 		= partial("login_partial")
 		= partial("basket_partial")
