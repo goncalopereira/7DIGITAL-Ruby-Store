@@ -1,6 +1,8 @@
 Example of music player for a specific release using the 7Digital Ruby wrapper
 
-Using Haml for templates, Sinatra for routing
+Using Haml for templates
+Sinatra for routing
+Compass Blueprint for styles
 
 RESTful
 
