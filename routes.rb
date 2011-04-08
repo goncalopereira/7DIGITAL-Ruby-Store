@@ -7,6 +7,7 @@ Dir["./lib/*.rb"].each {|file| require file }
 Dir["./models/*.rb"].each {|file| require file }
 
 use Rack::Session::Pool
+set :environment, :development
 
 def get_api_client credentials, country
 		
