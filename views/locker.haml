@@ -16,9 +16,12 @@
 					=locker_release.release.artist.name
 					\-
 					=locker_release.release.title
-				%ul
+				%p
 				- locker_release.locker_tracks.each do |locker_track|
-					%li
+					%p
 						=locker_track.track.artist.name
 						\-
 						=locker_track.track.title
+						\-
+						%a{:href=>"#{locker_track.download_urls[0].url}"}
+							Download Link
