@@ -1,8 +1,9 @@
-- if @user == nil then
-  %p
-    %a(href="/login")
-      Login
--else
-  %form{ :action => "/logout", :method => "post"}
-    %input{:type => "submit", :value => "Logout", :class => "button"}
+%div{:class => 'container'}
+  - if @user == nil then
+    %p
+      %a(href="/login")
+        Login
+  -else
+    %form{ :action => "/logout", :method => "post"}
+      %input{:type => "submit", :value => "Logout", :class => "button"}
 

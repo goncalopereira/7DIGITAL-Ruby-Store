@@ -9,26 +9,26 @@
 		= partial("login_partial")
 		= partial("basket_partial")
 		= partial("search_partial")
+		%div{:class => 'container'}
+			%h2= "Search For: #{@model.search_value} (Maximum of #{@model.page_size} results)"
 
-		%h2= "Search For: #{@model.search_value} (Maximum of #{@model.page_size} results)"
+			%h3 Release Results
 		
-		%h3 Release Results
-		
-		- @model.releases.each do |release|
-			%p
-				%a(href="/release/#{release.id}") #{release.artist.name} - #{release.title}
+			- @model.releases.each do |release|
+				%p
+					%a(href="/release/#{release.id}") #{release.artist.name} - #{release.title}
 
-		%h3 Artist Results
+			%h3 Artist Results
 
-		- @model.artists.each do |artist|
-			%p
-				%a(href="/artist/#{artist.id}") #{artist.name}
+			- @model.artists.each do |artist|
+				%p
+					%a(href="/artist/#{artist.id}") #{artist.name}
 
-		%h3 Track Results
-
-		- @model.tracks.each do |track|
-			%p
-				%a(href="/release/#{track.release.id}") #{track.artist.name} - #{track.title}
+			%h3 Track Results
+	
+			- @model.tracks.each do |track|
+				%p
+					%a(href="/release/#{track.release.id}") #{track.artist.name} - #{track.title}
 			
 
 		

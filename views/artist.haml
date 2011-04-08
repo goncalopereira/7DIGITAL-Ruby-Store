@@ -10,8 +10,9 @@
 		= partial("login_partial")
 		= partial("basket_partial")
 		= partial("search_partial")
-		= partial("artist_partial")
-		%h2 Releases
-		- @model.releases.each do |release|
-			%p
-				%a(href="/release/#{release.id}") #{release.artist.name} - #{release.title}
+		%div{:class => 'container'}
+			= partial("artist_partial")
+			%h2 Releases
+			- @model.releases.each do |release|
+				%p
+					%a(href="/release/#{release.id}") #{release.artist.name} - #{release.title}
