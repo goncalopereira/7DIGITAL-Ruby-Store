@@ -1,4 +1,4 @@
 class ArtistModel
 
-  attr_accessor :image_url,:artist_name, :url, :releases, :country
+  attr_accessor :image_url,:artist_name, :url, :releases
 end

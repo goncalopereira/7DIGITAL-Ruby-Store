@@ -3,16 +3,12 @@ get '/login' do
 end
 
 post '/login' do
-  country = get_country
-  email = params[:email]
-  password = params[:password]
+	email = params[:email]
+	password = params[:password]
 
-	credentials = Credentials.new
-	api_client = get_api_client credentials, country
+	session[:user] = @api_client.user.authenticate(email,password)
 
-  session[:user] = api_client.user.authenticate(email,password)
-
-  redirect "/#{country}"
+ 	redirect '/'
 end
 
 get '/logout' do
