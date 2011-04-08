@@ -1,5 +1,8 @@
 get '/locker' do
-	redirect '/locker/0/0'
+	if !@user.nil?
+		redirect '/locker/0/0'
+	else 
+		redirect '/'
 end
 
 get '/locker/:release_id/:track_id' do |release_id,track_id|
@@ -12,8 +15,8 @@ get '/locker/:release_id/:track_id' do |release_id,track_id|
 			@player_track_url = @api_client.user.get_stream_track_url(release_id, track_id, @user.oauth_access_token)
 		end
 		
-	haml :locker
-  else
-    redirect '/'
-  end
+		haml :locker
+  	else
+    		redirect '/'
+  	end
 end

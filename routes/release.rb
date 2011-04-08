@@ -1,6 +1,6 @@
 get '/release/:id'  do |release_id|
 	options = {}
-	options[:imageSize] = 350
+	options[:imageSize] = @main_image_size
 
 	release = @api_client.release.get_details(release_id,options)
 	release_tracks = @api_client.release.get_tracks(release_id)
