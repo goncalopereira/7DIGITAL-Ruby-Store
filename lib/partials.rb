@@ -4,7 +4,7 @@ module Haml
   module Helpers
     def partial(template, *args)
       template_array = template.to_s.split('/')
-      template = template_array[0..-2].join('/') + "/#{template_array[-1]}"
+      template = template_array[0..-2].join('/') + "/partials/#{template_array[-1]}"
       options = args.last.is_a?(Hash) ? args.pop : {}
       options.merge!(:layout => false)
       if collection = options.delete(:collection) then
