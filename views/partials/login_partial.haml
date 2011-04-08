@@ -1,10 +1,10 @@
 #container
 	- if @user.nil? then
-    		%a{:href =>'/login'}
-      			Login
-  	-else
-    		%a{:href => '/locker'}
-      			Locker
-    		\-
-    		%a{:href => '/logout'}
-      			Logout
+		%a{:href =>'/login'}
+			Login
+	-else
+		%a{:href => '/locker'}
+			Locker
+		\-
+		%a{:href => '/logout'}
+			Logout
