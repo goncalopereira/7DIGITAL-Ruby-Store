@@ -6,27 +6,27 @@
 		/[if IE]
 		%link{:type => "text/css", :href=>"/stylesheets/ie.css",:rel=>"stylesheet"}
 	%body
-		= haml(:'partials/login_partial',:layout=>false)
-		= haml(:'partials/basket_partial',:layout=>false)
-		= haml(:'partials/search_partial',:layout=>false)
+		= haml(:'partials/login_partial',:layout=>false, :locals => {:model => locals[:model]})
+		= haml(:'partials/basket_partial',:layout=>false, :locals => {:model => locals[:model]})
+		= haml(:'partials/search_partial',:layout=>false, :locals => {:model => locals[:model]})
 		%div{:class => 'container'}
-			%h2= "Search For: #{@model.search_value} (Maximum of #{@model.page_size} results)"
+			%h2= "Search For: #{locals[:model].search_value} (Maximum of #{locals[:model].page_size} results)"
 
 			%h3 Release Results
 		
-			- @model.releases.each do |release|
+			- locals[:model].releases.each do |release|
 				%p
 					%a(href="/release/#{release.id}") #{release.artist.name} - #{release.title}
 
 			%h3 Artist Results
 
-			- @model.artists.each do |artist|
+			- locals[:model].artists.each do |artist|
 				%p
 					%a(href="/artist/#{artist.id}") #{artist.name}
 
 			%h3 Track Results
 	
-			- @model.tracks.each do |track|
+			- locals[:model].tracks.each do |track|
 				%p
 					%a(href="/release/#{track.release.id}") #{track.artist.name} - #{track.title}
 			
