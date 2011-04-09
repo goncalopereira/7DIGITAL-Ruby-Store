@@ -10,11 +10,12 @@ Dir["./routes/*.rb"].each {|file| require file }
 use Rack::Session::Pool
 set :environment, :development
 
-get '/:country' do |country|
-  session[:country] = country
-	redirect '/'
+get %r{/([A-Z][A-Z])?} do |country|
+
+  	if !country.nil? and country != ''
+		session[:country] = country
+	end
+
+	haml :index
 end
 
-get '/' do
-  haml :index
-end
