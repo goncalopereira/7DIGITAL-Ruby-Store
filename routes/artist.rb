@@ -1,4 +1,4 @@
-get '/artist/:id' do |artist_id|
+get %r{/artist/([0-9]+)} do |artist_id|
   options = {}
   options[:imageSize] = @main_image_size
 

@@ -1,4 +1,4 @@
-get '/release/:id'  do |release_id|
+get %r{/release/([0-9]+)}  do |release_id|
 	options = {}
 	options[:imageSize] = @main_image_size
 
