@@ -3,8 +3,12 @@
 		%a{:href =>'/login'}
 			Login
 	-else
+		%a{:href => '/user'}
+			User
+		\-
 		%a{:href => '/locker'}
 			Locker
 		\-
 		%a{:href => '/logout'}
 			Logout
+			

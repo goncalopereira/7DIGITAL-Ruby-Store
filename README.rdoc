@@ -24,6 +24,9 @@ Don't forget to add a 'credentials' (no extension) file in the base folder with 
 
 	/locker
 		user's purchases if already logged in
+	
+	/user
+		user's details/edit page if already logged in
 
 Dependencies:
 
