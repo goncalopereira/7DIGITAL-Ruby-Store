@@ -27,8 +27,8 @@
 			%h3 Track Results
 	
 			- locals[:model].tracks.each do |track|
-				%p
-					%a(href="/release/#{track.release.id}") #{track.artist.name} - #{track.title}
+				#container
+					=haml(:'partials/track_small_partial',:layout=>false,:locals=>{:track=>track})
 			
 
 		

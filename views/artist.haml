@@ -18,4 +18,7 @@
 			%h2 Similar Artists
 			- locals[:model].similar_artists.each do |artist|
 				%p= haml(:'partials/artist_small_partial',:layout=>false,:locals=>{:artist=> artist})
+			%h2 Top Tracks
+			- locals[:model].top_tracks.each do |track|
+				%p= haml(:'partials/track_small_partial',:layout=>false,:locals=>{:track=>track})
 
