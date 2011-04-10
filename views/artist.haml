@@ -14,6 +14,8 @@
 			= haml(:'partials/artist_partial',:layout=>false,:locals => {:model => locals[:model]})
 			%h2 Releases
 			- locals[:model].releases.each do |release|
-				%p
-					%a(href="/release/#{release.id}") #{release.artist.name} - #{release.title}
+				%p= haml(:'partials/release_small_partial',:layout=>false,:locals=>{:release => release})
+			%h2 Similar Artists
+			- locals[:model].similar_artists.each do |artist|
+				%p= haml(:'partials/artist_small_partial',:layout=>false,:locals=>{:artist=> artist})
 
