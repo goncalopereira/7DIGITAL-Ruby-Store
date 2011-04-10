@@ -16,16 +16,13 @@
 		
 			- locals[:model].releases.each do |release|
 				#container
-					%a(href="/release/#{release.id}") 
-						=haml(:'partials/release_small_partial',:layout=>false,:locals=>{:release=>release})
+					=haml(:'partials/release_small_partial',:layout=>false,:locals=>{:release=>release})
 
 			%h3 Artist Results
 
 			- locals[:model].artists.each do |artist|
 				#container
-					%a(href="/artist/#{artist.id}") 
-						%img{:src=>artist.image}
-						#{artist.name}
+					=haml(:'partials/artist_small_partial',:layout=>false,:locals=>{:artist=>artist})
 
 			%h3 Track Results
 	
