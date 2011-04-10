@@ -1,6 +1,6 @@
 get %r{/locker(\/?)([0-9]*)(\/?)([0-9]*)} do |slash,release_id,slash_2,track_id|
    
-	pass unless !@user.nil?
+	pass if @user.nil?
 	
 	@locker = @api_client.user.get_locker(@user.oauth_access_token)
     

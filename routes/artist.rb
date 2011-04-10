@@ -4,7 +4,7 @@ get %r{/artist/([0-9]+)} do |artist_id|
 
 	artist = @api_client.artist.get_details(artist_id,options)
 	
-	pass unless !artist.nil? 
+	pass if artist.nil? 
 
   	artist_releases = @api_client.artist.get_releases(artist_id, options={})
 

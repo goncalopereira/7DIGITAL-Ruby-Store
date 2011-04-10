@@ -1,6 +1,6 @@
 get '/user' do
 
-	pass unless !@user.nil?
+	pass if @user.nil?
 	
 	haml :user
 end
