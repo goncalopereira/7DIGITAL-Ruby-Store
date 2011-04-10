@@ -1,9 +1,6 @@
 get '/user' do
 
-	@api_client.card
-	if @user.nil?
-		redirect '/'
-	end
+	pass unless !@user.nil?
 	
 	haml :user
 end
