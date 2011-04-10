@@ -1,8 +1,12 @@
 get '/login' do
-  haml :login
+	needs_ssl
+
+	haml :login
 end
 
 post '/login' do
+	needs_ssl
+
 	email = params[:email]
 	password = params[:password]
 
@@ -12,6 +16,8 @@ post '/login' do
 end
 
 get '/logout' do
-  session[:user] = nil
-  redirect "/"
+	needs_ssl
+  	
+	session[:user] = nil
+  	redirect "/"
 end
