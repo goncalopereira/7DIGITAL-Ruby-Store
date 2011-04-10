@@ -10,7 +10,7 @@
 		= haml(:'partials/login_partial',:layout=>false, :locals => {:model => locals[:model]})
 		= haml(:'partials/basket_partial',:layout=>false, :locals => {:model => locals[:model]})
 		= haml(:'partials/search_partial',:layout=>false, :locals => {:model => locals[:model]})
-		%div{:class => 'container'}
+		#container
 			= haml(:'partials/artist_partial',:layout=>false,:locals => {:model => locals[:model]})
 			%h2 Releases
 			- locals[:model].releases.each do |release|
