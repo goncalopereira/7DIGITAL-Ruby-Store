@@ -15,7 +15,9 @@ get %r{/([A-Z][A-Z])?} do |country|
   	if !country.nil? and country != ''
 		session[:country] = country
 	end
-
+	
+	@release_chart = @api_client.release.get_chart()
+	
 	haml :index
 end
 

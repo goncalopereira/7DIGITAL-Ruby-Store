@@ -1,0 +1,6 @@
+%h3 Chart
+-locals[:chart].product.each do |chart_item|
+	-chart_item.each do |item|
+		%p=haml(:'partials/release_small_partial',:layout=>false,:locals=>{:release => item.item})
+
+
