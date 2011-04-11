@@ -10,8 +10,14 @@
 		= haml(:'partials/basket_partial',:layout=>false, :locals => {:model => locals[:model]})
 		= haml(:'partials/search_partial',:layout=>false, :locals => {:model => locals[:model]})
 
-		%h1 User Page
-		%p
-			%h2 Details
-			%b Email Address:
-			=@user.email_address
+	
+		%h2 Cards	
+		-@cards.each do |card|
+			%p
+				=card.type
+				/-
+				=card.card_holder_name
+				/-
+				=card.last_4_digits 
+				/-
+				=card.expiry_date
