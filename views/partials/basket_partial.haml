@@ -1,9 +1,8 @@
-- if (!@basket.nil? && @basket.basket_items.count != 0)
-
-  %h3 Basket
-
-  - @basket.basket_items.each do |item|
-    = item.artist_name + " " + item.item_name
-    %a(href="/basket/remove/#{item.id}") Remove
-    \-
-    = item.price.formatted_price
+#basket
+	- if (!@basket.nil? && @basket.basket_items.count != 0)
+		%h3 Basket
+		- @basket.basket_items.each do |item|
+			= item.artist_name + " " + item.item_name
+			%a(href="/basket/remove/#{item.id}") Remove
+			\-
+			= item.price.formatted_price
