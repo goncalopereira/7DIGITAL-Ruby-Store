@@ -9,6 +9,7 @@ Dir["./routes/*.rb"].each {|file| require file }
 
 use Rack::Session::Pool
 set :environment, :development
+set :host_name, ENV['SD_API_HOST_NAME']
 
 get %r{/([A-Z][A-Z])?} do |country|
 
