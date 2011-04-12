@@ -11,7 +11,9 @@ RESTful
 Don't forget to add two environment variables for the 7Digital API credentials
 	SD_API_KEY 
 	SD_API_SECRET
-
+Also add a host name environment variable for the login callback (no paths)
+	SD_API_HOST_NAME
+	
 	/COUNTRY (i.e. /GB)
 		to set country
 
