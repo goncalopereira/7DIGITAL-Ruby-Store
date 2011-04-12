@@ -1,7 +1,6 @@
 before do 
 	country = get_country
-	credentials = Credentials.new
-	@api_client = get_api_client credentials, country
+	@api_client = get_api_client country
 	
 	@user = session[:user]
 	@basket = get_basket @api_client
@@ -11,11 +10,11 @@ before do
 
 end
 
-def get_api_client credentials, country
+def get_api_client country
 		
 	return Sevendigital::Client.new(
-		:oauth_consumer_key => credentials.key,
-        :oauth_consumer_secret => credentials.secret,
+		:oauth_consumer_key => settings.api_key,
+        :oauth_consumer_secret => settings.api_secret,
         :lazy_load? => true,
         :country => country,
         :cache => VerySimpleCache.new,
