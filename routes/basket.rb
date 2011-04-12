@@ -2,8 +2,8 @@ get %r{(/partial)?/basket/add/([0-9]+)(\/?)([0-9]*)} do |partial,release_id,slas
   
 	track_id = nil if track_id == ''
 
-	@basket = @api_client.basket.add_item(session[:basket].id,release_id, track_id)
-	session[:basket] = @basket
+	@basket = @api_client.basket.add_item(@basket.id,release_id, track_id)
+	set_basket @basket, @country
 
   	if partial.nil?
 		redirect '/'
@@ -14,8 +14,8 @@ end
 
 get %r{(/partial)?/basket/remove/([0-9]+)} do  |partial,item_id|
 
-  	@basket = @api_client.basket.remove_item(session[:basket].id,item_id)
-	session[:basket] = @basket
+  	@basket = @api_client.basket.remove_item(@basket.id,item_id)
+	set_basket @basket, @country
 
 	if partial.nil?
 		redirect '/'

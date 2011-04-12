@@ -16,7 +16,7 @@ set :api_secret,ENV['SD_API_SECRET']
 get %r{/([A-Z][A-Z])?} do |country|
 
   	if !country.nil? and country != ''
-		session[:country] = country
+		set_country country
 		redirect '/' #refresh api_client with new country...
 	end
 	
