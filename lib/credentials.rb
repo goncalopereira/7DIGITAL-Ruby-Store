@@ -1,17 +1,13 @@
 class Credentials
 	attr_accessor :key, :secret
 	
-	def initialize
+	def initialize		
+			@key = ENV['SD_API_KEY']
+			@secret = ENV['SD_API_SECRET']
 		
-		credentials_file_name = 'credentials'
-
-		if File.exists?(credentials_file_name)				
-			file = File.new(credentials_file_name,"r")	
-			@key = file.gets.split.join("\n")
-			@secret = file.gets.split.join("\n")
-		else
-			throw  'no credentials file'
-		end
+      if @key.nil? or @key == '' or @secret.nil? or @secret == ''
+        throw 'no credentials found, please set up SD_API_KEY and SD_API_SECRET'
+      end
 	end
 		
 end
