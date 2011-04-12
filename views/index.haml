@@ -6,6 +6,13 @@
 		/[if IE]
 		%link{:type => "text/css", :href=>"/stylesheets/ie.css",:rel=>"stylesheet"}
 	%body
+		Choose Store:
+		%a{:href=>'/GB'} UK
+		\-
+		%a{:href=>'/FR'} France
+		\-
+		%a{:href=>'/DE'} Germany
+
 		= haml(:'partials/login_partial',:layout=>false, :locals => {:model => locals[:model]})
 		= haml(:'partials/basket_partial',:layout=>false, :locals => {:model => locals[:model]})
 		= haml(:'partials/search_partial',:layout=>false, :locals => {:model => locals[:model]})

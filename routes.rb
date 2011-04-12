@@ -14,6 +14,7 @@ get %r{/([A-Z][A-Z])?} do |country|
 
   	if !country.nil? and country != ''
 		session[:country] = country
+		redirect '/' #refresh api_client with new country...
 	end
 	
 	@release_chart = @api_client.release.get_chart()

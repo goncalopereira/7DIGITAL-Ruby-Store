@@ -7,6 +7,8 @@ end
 post '/login' do
 	needs_ssl
 
+	pass if !@user.nil?
+
 	email = params[:email]
 	password = params[:password]
 
