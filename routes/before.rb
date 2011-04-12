@@ -9,7 +9,6 @@ before do
 	@main_image_size = 350
 	@tile_image_size = 100
 
-	needs_ssl unless @user.nil?
 end
 
 def get_api_client credentials, country
