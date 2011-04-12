@@ -8,7 +8,9 @@ Compass Blueprint for styles
 
 RESTful
 
-Don't forget to add a 'credentials' (no extension) file in the base folder with consumer key and secret
+Don't forget to add two environment variables for the 7Digital API credentials
+	SD_API_KEY 
+	SD_API_SECRET
 
 	/COUNTRY (i.e. /GB)
 		to set country
