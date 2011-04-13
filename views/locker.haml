@@ -12,6 +12,11 @@
 
 		%div{:class => 'container'}
 			%h2 Locker
+			%p
+				- if @page_number > 1
+					%a{:href=>"/locker/#{@page_number-1}"} Previous Page
+				\-
+				%a{:href=>"/locker/#{@page_number+1}"} Next Page
 			- @locker.locker_releases.each do |locker_release|
 				%b
 					=locker_release.release.artist.name
@@ -25,7 +30,7 @@
 								\-
 								=locker_track.track.title
 								\-
-								%a{:href=>"/locker/download/#{locker_release.release.id}/#{locker_track.track.id}"}
+								%a{:href=>"/locker/#{@page_number}/download/#{locker_release.release.id}/#{locker_track.track.id}"}
 									Download Track
 								\-
 								%a{:href=>"/locker/stream/#{locker_release.release.id}/#{locker_track.track.id}"}

@@ -1,16 +1,9 @@
-get '/locker' do
-   
-	pass if @user.nil?
 	
-	@locker = @api_client.user.get_locker(@user.oauth_access_token)
-	
-	haml :locker
-end		
 
-get %r{/locker/download/([0-9]+)/([0-9]+)} do |release_id,track_id|
+get %r{/locker/([0-9]+)/download/([0-9]+)/([0-9]+)} do |page_number,release_id,track_id|
 	pass if @user.nil?
 	
-	@locker = @api_client.user.get_locker(@user.oauth_access_token)
+	@locker = @api_client.user.get_locker(@user.oauth_access_token, {:page => page_number})
 
 	@locker.locker_releases.each do |locker_release|
 		locker_release.locker_tracks.each do |locker_track|
@@ -28,3 +21,17 @@ get %r{/locker/stream/([0-9]+)/([0-9]+)} do |release_id,track_id|
 
 	redirect @api_client.user.get_stream_track_url(release_id, track_id, @user.oauth_access_token)
 end
+
+get %r{/locker(\/)?([0-9]*)} do |slash,page_number|
+   
+	pass if @user.nil?
+		
+	@page_number = 1 
+	@page_number = page_number.to_i unless page_number.nil? or page_number.nil? or page_number.to_i == 0
+	
+	puts @page_number
+	
+	@locker = @api_client.user.get_locker(@user.oauth_access_token, {:page => @page_number})
+	
+	haml :locker
+end	
