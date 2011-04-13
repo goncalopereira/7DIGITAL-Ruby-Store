@@ -1,13 +1,13 @@
-def get_basket api_client, country
-  if session[:"basket#{country}"].nil?
-    session[:"basket#{country}"] = api_client.basket.create()
+def get_basket api_client
+  if session[:basket].nil?
+    session[:basket] = api_client.basket.create()
   end
 
-  session[:"basket#{country}"]
+  session[:basket]
 end
 
-def set_basket basket, country
-	session[:"basket#{country}"] = basket
+def set_basket basket
+	session[:basket] = basket
 end
 
 def get_country

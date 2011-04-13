@@ -3,7 +3,7 @@ before do
 	@api_client = get_api_client @country
 	
 	@user = session[:user]
-	@basket = get_basket @api_client, @country
+	@basket = get_basket @api_client
 	
 	@main_image_size = 350
 	@tile_image_size = 100
