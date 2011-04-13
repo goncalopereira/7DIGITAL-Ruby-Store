@@ -1,7 +1,4 @@
 %h3 Tracks
 - locals[:model].tracks.each do |track|
-  %p
-    = track.artist.name
-    \-
-    = track.title
-    %a(href="/basket/add/#{locals[:model].release_id}/#{track.id}") Add
+	%p= haml(:'partials/track_small_partial',:layout=>false,:locals=>{:track=>track})
+

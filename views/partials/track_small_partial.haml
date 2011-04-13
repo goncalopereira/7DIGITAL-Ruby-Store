@@ -2,3 +2,5 @@
 	=locals[:track].artist.name 
 	\- 
 	=locals[:track].title
+	\-	
+	%a{:href=>"/basket/add/#{locals[:track].release.id}/#{locals[:track].id}"} Add
