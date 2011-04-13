@@ -14,3 +14,5 @@
 			= haml(:'partials/release_partial',:layout=>false, :locals=>{:model => locals[:model]})
 			= haml(:'partials/release_tracks_partial',:layout=>false, :locals=>{:model=>locals[:model]})
 			= haml(:'partials/release_player_partial',:layout=>false, :locals=>{:model=>locals[:model]})
+			= haml(:'partials/release_recommendations_partial',:layout=>false,:locals=>{:recommendations=>@recommendations})
+

@@ -4,6 +4,7 @@ get %r{/release/([0-9]+)}  do |release_id|
 
 	release = @api_client.release.get_details(release_id,options)
 	release_tracks = @api_client.release.get_tracks(release_id)
+	@recommendations = @api_client.release.get_recommendations(release_id)
 
 	model = ReleaseModel.new
   	model.label = release.label.name

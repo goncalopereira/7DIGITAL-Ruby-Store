@@ -1,0 +1,5 @@
+%h3 Recommendations
+-locals[:recommendations].each do |release|
+	%p=haml(:'partials/release_small_partial',:layout=>false,:locals=>{:release => release})
+
+
