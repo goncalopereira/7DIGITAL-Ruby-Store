@@ -10,8 +10,6 @@
 		= haml(:'partials/basket_partial',:layout=>false)
 		= haml(:'partials/search_partial',:layout=>false)
 
-		%audio{:src=>"#{@player_track_url}", :controls=>"controls", :type=>"audio/mp3"}
-
 		%div{:class => 'container'}
 			%h2 Locker
 			- @locker.locker_releases.each do |locker_release|
@@ -27,8 +25,8 @@
 								\-
 								=locker_track.track.title
 								\-
-								%a{:href=>"#{locker_track.download_urls[0].url}"}
+								%a{:href=>"/locker/download/#{locker_release.release.id}/#{locker_track.track.id}"}
 									Download Track
 								\-
-								%a{:href=>"/locker/#{locker_release.release.id}/#{locker_track.track.id}"}
+								%a{:href=>"/locker/stream/#{locker_release.release.id}/#{locker_track.track.id}"}
 									Stream Track
