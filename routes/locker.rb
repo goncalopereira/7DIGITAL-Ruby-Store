@@ -31,7 +31,7 @@ get %r{/locker(\/)?([0-9]*)} do |slash,page_number|
 	
 	puts @page_number
 	
-	@locker = @api_client.user.get_locker(@user.oauth_access_token, {:page => @page_number})
+	@locker = @api_client.user.get_locker(@user.oauth_access_token, {:page => @page_number, :image_size => 200})
 	
 	haml :locker
 end	

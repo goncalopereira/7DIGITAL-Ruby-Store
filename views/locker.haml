@@ -19,10 +19,13 @@
 				- if @page_number < @locker.locker_releases.total_pages
 					%a{:href=>"/locker/#{@page_number+1}"} Next Page
 			- @locker.locker_releases.each do |locker_release|
-				%b
-					=locker_release.release.artist.name
-					\-
-					=locker_release.release.title
+				%p
+					%img{:src=>locker_release.release.image}
+				%p
+					%b
+						=locker_release.release.artist.name
+						\-
+						=locker_release.release.title
 				%p
 					%ul
 						- locker_release.locker_tracks.each do |locker_track|
