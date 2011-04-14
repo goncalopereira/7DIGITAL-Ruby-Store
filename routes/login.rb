@@ -18,7 +18,7 @@ get '/login' do
 	
 	session[:request_token] = request_token
 
-	redirect "https://account.7digital.com/#{settings.api_key}/oauth/authorise?oauth_token=#{request_token.token}&oauth_callback=http%3a%2f%2f#{settings.host_name}%2flogin%2f#{session.object_id}"
+	redirect "https://account.7digital.com/web/oauth/authorise?oauth_token=#{request_token.token}&oauth_callback=http%3a%2f%2f#{settings.host_name}%2flogin%2f#{session.object_id}"
 end
 
 get '/logout' do
