@@ -16,6 +16,7 @@ get %r{/release/([0-9]+)}  do |release_id|
 	model.url = release.url
   	model.release_id = release.id
  	model.price = release.price
+	model.artist_id = release.artist.id
 
 	haml :release, :locals => {:model => model}
 end

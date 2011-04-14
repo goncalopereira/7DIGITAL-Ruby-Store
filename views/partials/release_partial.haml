@@ -1,6 +1,16 @@
-%h2= locals[:model].artist_name + " - " +  locals[:model].release_name
-%h3= locals[:model].label + " - " + locals[:model].formatted_date
-%img{:src=>locals[:model].image_url}
+%h2
+	%a{:href=>"/artist/#{locals[:model].artist_id}"} 
+		=locals[:model].artist_name 
+	\- 
+	=locals[:model].release_name
+
+%h3	
+	=locals[:model].label
+	\-
+	=locals[:model].formatted_date
+%p
+	%img{:src=>locals[:model].image_url}
+
 %p  
 	%a(href="/basket/add/#{locals[:model].release_id}") Add
 	\-
