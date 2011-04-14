@@ -6,7 +6,7 @@ require 'haml'
 Dir["./lib/*.rb"].each {|file| require file }
 Dir["./models/*.rb"].each {|file| require file }
 Dir["./routes/*.rb"].each {|file| require file }
-require 'index.rb' #moving to routes folder will make catch-all go first
+require './index.rb' #moving to routes folder will make catch-all go first
 
 use Rack::Session::Pool
 set :environment, :development

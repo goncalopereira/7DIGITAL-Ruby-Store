@@ -16,7 +16,8 @@
 				- if @page_number > 1
 					%a{:href=>"/locker/#{@page_number-1}"} Previous Page
 				\-
-				%a{:href=>"/locker/#{@page_number+1}"} Next Page
+				- if @page_number < @locker.locker_releases.total_pages
+					%a{:href=>"/locker/#{@page_number+1}"} Next Page
 			- @locker.locker_releases.each do |locker_release|
 				%b
 					=locker_release.release.artist.name
