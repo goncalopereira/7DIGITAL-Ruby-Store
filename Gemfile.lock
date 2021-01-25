@@ -9,7 +9,7 @@ GEM
       tilt
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
-    oauth (0.4.4)
+    oauth (0.5.5)
     peachy (0.4.1)
     rack (2.2.3)
     rack-protection (2.0.8.1)
@@ -30,7 +30,7 @@ PLATFORMS
 DEPENDENCIES
   7digital
   haml
-  oauth
+  oauth (>= 0.5.5)
   sinatra (>= 2.0.2)
 
 BUNDLED WITH
